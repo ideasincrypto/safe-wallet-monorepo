@@ -3,7 +3,7 @@ import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, 
 import { reduxStorage } from './storage'
 import txHistory from './txHistorySlice'
 import activeSafe from './activeSafeSlice'
-import myAccountsSlice from './myAccountsSlice'
+import myAccounts from './myAccountsSlice'
 import safes from './safesSlice'
 import { cgwClient, setBaseUrl } from '@safe-global/store/gateway/cgwClient'
 import devToolsEnhancer from 'redux-devtools-expo-dev-plugin'
@@ -14,13 +14,13 @@ const persistConfig = {
   key: 'root',
   version: 1,
   storage: reduxStorage,
-  blacklist: [cgwClient.reducerPath],
+  blacklist: [cgwClient.reducerPath, 'myAccounts'],
 }
 export const rootReducer = combineReducers({
   txHistory,
   safes,
   activeSafe,
-  myAccountsSlice,
+  myAccounts,
   [cgwClient.reducerPath]: cgwClient.reducer,
 })
 

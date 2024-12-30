@@ -7,14 +7,13 @@ import { getChainsByIds, selectAllChains } from '@/src/store/chains'
 import { Balance } from './Balance'
 import { makeSafeId } from '@/src/utils/formatters'
 import { RootState } from '@/src/store'
-import { selectActiveSafeInfo } from '@/src/store/safesSlice'
+import { selectSafeInfo } from '@/src/store/safesSlice'
 
 export function BalanceContainer() {
   const chains = useSelector(selectAllChains)
   const activeSafe = useSelector(selectActiveSafe)
   const dispatch = useDispatch()
-  const activeSafeInfo = useSelector((state: RootState) => selectActiveSafeInfo(state, activeSafe.address))
-  console.log(activeSafeInfo)
+  const activeSafeInfo = useSelector((state: RootState) => selectSafeInfo(state, activeSafe.address))
   const activeSafeChains = useSelector((state: RootState) => getChainsByIds(state, activeSafeInfo.chains))
   const { data, isLoading } = useSafesGetSafeOverviewV1Query<SafeOverviewResult>(
     {

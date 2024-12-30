@@ -59,13 +59,16 @@ export function Dropdown<T>({
   const hasCustomItems = items && Render
   const isSortable = items && sortable
 
-  const renderItem = ({ item, drag, isActive }: RenderItemParams<T>) => {
-    return (
-      <ScaleDecorator activeScale={1.05}>
-        {Render && <Render drag={drag} isDragging={isActive} item={item} onClose={handleModalClose} />}
-      </ScaleDecorator>
-    )
-  }
+  const renderItem = useCallback(
+    ({ item, drag, isActive }: RenderItemParams<T>) => {
+      return (
+        <ScaleDecorator activeScale={1.05}>
+          {Render && <Render drag={drag} isDragging={isActive} item={item} onClose={handleModalClose} />}
+        </ScaleDecorator>
+      )
+    },
+    [handleModalClose, Render],
+  )
 
   const renderDropdownHeader = useMemo(
     () => (
@@ -155,3 +158,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
   },
 })
+
+// export const Dropdown = React.memo(DropdownComponent, (prevProps, nextProps) => {
+//   return JSON.stringify(prevProps.items || []) === JSON.stringify(nextProps.items || [])
+// })

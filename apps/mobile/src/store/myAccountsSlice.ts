@@ -17,6 +17,6 @@ const myAccountsSlice = createSlice({
 
 export const { toggleMode } = myAccountsSlice.actions
 
-export const selectMyAccountsMode = (state: RootState) => state.myAccountsSlice.isEdit
+export const selectMyAccountsMode = (state: RootState) => state.myAccounts.isEdit
 
 export default myAccountsSlice.reducer

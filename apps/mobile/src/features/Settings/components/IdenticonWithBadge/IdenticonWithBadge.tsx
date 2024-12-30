@@ -31,7 +31,7 @@ export const IdenticonWithBadge = ({
               content={badgeContent}
               textContentProps={{
                 fontSize,
-                fontWeight: 700,
+                fontWeight: 500,
               }}
               themeName={'badge_success'}
               circleProps={{ bordered: true }}
